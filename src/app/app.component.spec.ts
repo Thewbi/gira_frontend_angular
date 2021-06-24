@@ -1,6 +1,10 @@
+import { TopNavBarComponent } from './top-nav-bar/top-nav-bar.component';
+import { SideNavBarComponent } from './side-nav-bar/side-nav-bar.component';
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+
+
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -9,7 +13,9 @@ describe('AppComponent', () => {
         RouterTestingModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        TopNavBarComponent,
+        SideNavBarComponent
       ],
     }).compileComponents();
   }));
@@ -30,6 +36,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to gira!');
+    expect(compiled.querySelector('h1').textContent).toContain('gira');
   });
 });

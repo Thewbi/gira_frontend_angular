@@ -1,0 +1,27 @@
+.top-nav-bar
+  border: 0px solid black
+
+
+  // keep the navbar at the top of the screen at all times
+  position: fixed
+  top: 0
+
+  width: 100% // when you set an element to position:fixed, it takes on the width of the viewport instead of it's parent. For some reason the viewport has no width to it, so set the div's width to 100%
+
+.flexbox-container
+  border: 1px solid black
+  height: 45px
+  background-color: white
+
+.menu
+  display: flex
+  justify-content: space-between
+  height: 100%
+
+.menu-item
+  display: flex
+  height: 100%
+
+.active
+  color: white
+  background-color: blue

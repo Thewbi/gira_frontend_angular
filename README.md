@@ -9,13 +9,20 @@ $ nvm use v16.1.0
 $ ng new gira
 - use routing, and sass
 
+### The top-nav-bar
+$ ng generate component top-nav-bar
+
+### The side-nav-bar
+$ ng generate component side-nav-bar
+
 ## Development server
 
 Run `npm run start` or `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `ng generate component component-name` to generate a new component.
+You can also use `ng generate component|directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
