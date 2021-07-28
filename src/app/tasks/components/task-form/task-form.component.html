@@ -1,0 +1,62 @@
+<h1>Task Details</h1>
+
+<form [formGroup]="taskFormGroup" (ngSubmit)="submit($event);">
+  <div>
+    <label for="taskname">Task Name: *</label>
+    <input id="taskname" type="text" formControlName="name" />
+
+
+    <div
+      *ngIf="
+        taskFormGroup.get('name')?.invalid &&
+        taskFormGroup.get('name')?.errors
+      "
+    >
+      <small
+        class="text-danger"
+        *ngIf="taskFormGroup.get('name')?.hasError('required')"
+      >
+        This field is required.
+      </small>
+      <small
+        class="text-danger"
+        *ngIf="taskFormGroup.get('name')?.hasError('minlength')"
+      >
+        The minimum length for this field is
+        {{
+          taskFormGroup.get("name")?.errors?.minlength.requiredLength
+        }}
+        characters.
+      </small>
+      <small
+        class="text-danger"
+        *ngIf="taskFormGroup.get('name')?.hasError('maxlength')"
+      >
+        The maximum length for this field is
+        {{
+          taskFormGroup.get("name")?.errors?.maxlength.requiredLength
+        }}
+        characters.
+      </small>
+    </div>
+  </div>
+
+  <div>
+    <label for="description">Description: </label>
+    <input id="description" type="text" formControlName="description" />
+  </div>
+
+  <button
+    id="submit_task_details"
+    type="submit"
+    [disabled]="!taskFormGroup.valid"
+  >
+    Submit
+  </button>
+
+  <p>Form Status: {{ taskFormGroup.status }}</p>
+  <pre>{{ taskFormGroup.value | json }}</pre>
+</form>
+
+
+

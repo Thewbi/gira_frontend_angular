@@ -1,0 +1,17 @@
+<h1>Tasks</h1>
+
+<div *ngIf="this.selectedProject == undefined; else elseBlock">
+  No project is selected.
+</div>
+<ng-template #elseBlock>
+  <div>Selected Project is: {{ selectedProject?.projectname }}</div>
+  <div>Selected Task is: {{ (selectedTask$ | async)?.name }}</div>
+
+  <app-task-form (addTask)="addTask($event)"></app-task-form>
+  <app-task-list
+    [tasks]="tasks$ | async"
+    [selectedTask]="selectedTask$ | async"
+    (selectTask)="selectTask($event)"
+    (deleteTask)="deleteTask($event)"
+  ></app-task-list>
+</ng-template>

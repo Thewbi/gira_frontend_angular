@@ -1,0 +1,62 @@
+<h1>Project Details</h1>
+
+<form [formGroup]="projectFormGroup" (ngSubmit)="submit($event);">
+  <div>
+    <label for="projectname">Project Name: *</label>
+    <input id="projectname" type="text" formControlName="projectname" />
+
+
+    <div
+      *ngIf="
+        projectFormGroup.get('projectname')?.invalid &&
+        projectFormGroup.get('projectname')?.errors
+      "
+    >
+      <small
+        class="text-danger"
+        *ngIf="projectFormGroup.get('projectname')?.hasError('required')"
+      >
+        This field is required.
+      </small>
+      <small
+        class="text-danger"
+        *ngIf="projectFormGroup.get('projectname')?.hasError('minlength')"
+      >
+        The minimum length for this field is
+        {{
+          projectFormGroup.get("projectname")?.errors?.minlength.requiredLength
+        }}
+        characters.
+      </small>
+      <small
+        class="text-danger"
+        *ngIf="projectFormGroup.get('projectname')?.hasError('maxlength')"
+      >
+        The maximum length for this field is
+        {{
+          projectFormGroup.get("projectname")?.errors?.maxlength.requiredLength
+        }}
+        characters.
+      </small>
+    </div>
+  </div>
+
+  <div>
+    <label for="description">Description: </label>
+    <input id="description" type="text" formControlName="description" />
+  </div>
+
+  <button
+    id="submit_project_details"
+    type="submit"
+    [disabled]="!projectFormGroup.valid"
+  >
+    Submit
+  </button>
+
+  <p>Form Status: {{ projectFormGroup.status }}</p>
+  <pre>{{ projectFormGroup.value | json }}</pre>
+</form>
+
+
+

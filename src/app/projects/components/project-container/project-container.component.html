@@ -1,0 +1,13 @@
+<h1>Projects</h1>
+
+<app-project-form (addProject)="addProject($event)"></app-project-form>
+<app-project-list
+  [projects]="projects$ | async"
+  [selectedProject]="selectedProject$ | async"
+  (selectProject)="selectProject($event)"
+  (deleteProject)="deleteProject($event)"
+></app-project-list>
+
+<app-task-container
+  [selectedProject]="selectedProject$ | async"
+></app-task-container>

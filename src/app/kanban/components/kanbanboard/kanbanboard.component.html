@@ -1,0 +1,60 @@
+<h1>Kanban Board</h1>
+
+<a routerLink="/projects" routerLinkActive="active">Projects</a>
+
+<div *ngIf="(this.selectedProject$ | async) == undefined; else elseBlock">
+  No project is selected.
+</div>
+<ng-template #elseBlock>
+  <div>
+    Selected Project is: {{ (selectedProject$ | async)?.projectname }} -
+    {{ (selectedProject$ | async)?.description }}
+  </div>
+
+  <h1>List of Tasks</h1>
+
+  <div *ngIf="(tasks$ | async)?.length === 0; else elseBlock">
+    No tasks are available.
+  </div>
+  <ng-template #elseBlock>
+    <ul>
+      <!-- https://ultimatecourses.com/blog/angular-ngfor-async-pipe -->
+
+      <!--
+        (dragstart)="onDragStart($event)"
+          (dragover)="onDragOver($event)"
+          (dragend)="onDragEnd($event)"
+          (drop)="onDrop($event)"
+      -->
+      <li *ngFor="let task of tasks$ | async; index as i">
+        <span
+          id ="span_{{i}}"
+          draggable="true"
+          (dragstart)="onDragStart($event)"
+          (dragover)="onDragOver($event)"
+          (dragend)="onDragEnd($event)"
+          >{{ i + 1 }}. {{ task.name }} - {{ task.description }}</span
+        >
+      </li>
+    </ul>
+
+    <!--
+      (dragstart)="onDragStart($event)"
+      (dragenter)="onDragEnter($event)"
+      (dragover)="onDragOver($event)"
+      (dragleave)="onDragLeave($event)"
+      (dragend)="onDragEnd($event)"
+    -->
+    <div
+      id="div2"
+      class="drop-target"
+      (dragenter)="onDragEnter($event)"
+      (dragover)="onDragOver($event)"
+      (drop)="onDrop($event)"
+      (dragleave)="onDragLeave($event)"
+    >drop-target</div>
+
+    <div *ngFor="let taskState of kanbanLaneStates; index as i"><app-kanbanlane [taskState]="taskState"></app-kanbanlane></div>
+
+  </ng-template>
+</ng-template>

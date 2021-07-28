@@ -1,0 +1,12 @@
+<h1>Project List</h1>
+
+SelectedProject is: {{ selectedProject?.projectname | json }}
+
+<ul>
+  <li *ngFor="let project of projects" (click)="onSelect(project)">
+    <span [ngClass]="{'selected' : project.id == selectedProject?.id}">{{ project.projectname }} - {{ project.description }}</span>
+
+    <a routerLink="/kanban" routerLinkActive="active">Kanban</a>
+    <button (click)="delete($event, project); false">Delete</button>
+  </li>
+</ul>
