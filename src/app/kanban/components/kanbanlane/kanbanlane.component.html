@@ -1,18 +1,22 @@
-<div class="kanbanlane"
-(dragenter)="onDragEnter($event)"
-      (dragover)="onDragOver($event)"
-      (drop)="onDrop($event)"
-      (dragleave)="onDragLeave($event)">Kanban Lane {{taskState}}
+<div class="kanban-lane" (dragenter)="onDragEnter($event)" (dragover)="onDragOver($event)" (drop)="onDrop($event)"
+  (dragleave)="onDragLeave($event)">
+  <h1>Kanban Lane {{ taskState }}</h1>
+  <div *ngIf="(tasks$ | async)?.length === 0; else elseBlock">
+    No tasks are available.
+  </div>
+  <ng-template #elseBlock>
+    <!-- <app-kanbanitem
+      *ngFor="let task of tasks$ | async"
+      [task]="task"
+      (dragstart)="onDragStart($event)"
+    ></app-kanbanitem> -->
 
-<div *ngIf="(tasks$ | async)?.length === 0; else elseBlock">
-  No tasks are available.
-</div>
-<ng-template #elseBlock>
+    <!-- <ul>
+      <li *ngFor="let task of tasks$ | async">
+        <app-kanbanitem [task]="task" (dragstart)="onDragStart($event)"></app-kanbanitem>
+      </li>
+    </ul> -->
 
-
-    <app-kanbanitem *ngFor="let task of (tasks$ | async)" [task]="task" (dragstart)="onDragStart($event)"></app-kanbanitem>
-
-
-</ng-template>
-
+    <app-kanbanitem (deleteTask)="onDeleteTask($event)" *ngFor="let task of tasks$ | async" [task]="task" (dragstart)="onDragStart($event)"></app-kanbanitem>
+  </ng-template>
 </div>

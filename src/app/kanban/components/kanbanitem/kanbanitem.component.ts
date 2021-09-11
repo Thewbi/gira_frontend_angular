@@ -11,7 +11,10 @@ export class KanbanitemComponent implements OnInit {
   public task: Task | null;
 
   @Output()
-  selectTask = new EventEmitter<Task>();
+  public selectTask = new EventEmitter<Task>();
+
+  @Output()
+  public deleteTask = new EventEmitter<Task>();
 
   constructor() {
     this.task = null;
@@ -21,5 +24,15 @@ export class KanbanitemComponent implements OnInit {
 
   public onSelect(task: Task) {
     this.selectTask.emit(task);
+  }
+
+  //public onDeleteTask(event: any, task: Task | null) {
+  public onDeleteTask(event: any, task: Task | null) {
+    // console.log('onDeleteTask event: ', event, ' task: ', task);
+    event.stopPropagation();
+    if (task != null) {
+      console.log('onDeleteTask Calling event emitter: ', this.deleteTask);
+      this.deleteTask.emit(task);
+    }
   }
 }

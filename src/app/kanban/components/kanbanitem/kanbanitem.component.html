@@ -1,4 +1,15 @@
-<div id="kanbanitem_{{task?.id}}"  class="kanban-item" draggable="true">
-  <div>kanbanitem</div>
-  <div>Task {{ task?.name }} - {{ task?.description }}</div>
+<div id="kanbanitem_{{ task?.id }}" class="kanban-card" draggable="true">
+
+  <section class=body>
+    <div class="body-header">BETA FEEDBACK</div>
+    <button (click)="onDeleteTask($event, task); false" class="btn-icon"><i class="far fa-trash-alt"></i></button>
+
+    <div class="body-text">
+      {{ task?.name }}, {{ task?.description }}
+    </div>
+  </section>
+
+  <section class="footer">
+    <div>#173462</div>
+  </section>
 </div>

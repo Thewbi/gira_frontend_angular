@@ -23,7 +23,14 @@ export function selectedTasksReducer(
     }
     case TaskActionTypes.DeleteTask: {
       let deletedTask = (action as DeleteTaskAction).payload;
-      if (state?.id == deletedTask.id) {
+      if (state?.id == deletedTask.task.id) {
+        return null;
+      }
+      return state;
+    }
+    case TaskActionTypes.DeleteTaskFinished: {
+      let deletedTask = (action as DeleteTaskFinishedAction).payload;
+      if (state?.id == deletedTask.task.id) {
         return null;
       }
       return state;
@@ -62,7 +69,15 @@ export function tasksReducer(state: Task[] = [], action: Action): Task[] {
     }
     case TaskActionTypes.DeleteTaskFinished: {
       let deletedTask = (action as DeleteTaskFinishedAction).payload;
-      return state.filter((p) => p.id !== deletedTask.id);
+      console.log('Filtering task: ', deletedTask);
+
+      console.log('Before');
+      console.dir(state);
+      let result = state.filter((p) => p.id !== deletedTask.task.id);
+      console.log('After');
+      console.dir(result);
+
+      return result;
     }
     case TaskActionTypes.ClearTaskState: {
       let selectedProject = (action as ClearTaskStateAction).payload;

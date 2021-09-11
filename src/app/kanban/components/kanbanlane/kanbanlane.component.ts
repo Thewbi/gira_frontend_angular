@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -17,13 +17,34 @@ export class KanbanlaneComponent implements OnInit {
   /** The state, this Kanbanlane represents. It will contain all Kanbanitems having this state. */
   @Input()
   public taskState: string = 'UNKNOWN';
+
+  @Output()
+  public deleteTask = new EventEmitter<Task>();
+
   public tasks$: Observable<Task[]> | null = null;
+
   constructor(private store: Store<any>) {}
+
   ngOnInit(): void {
     this.tasks$ = this.store.select(
       selectTaskByStateFactorySelector(this.taskState)
     );
   }
+
+  public onDeleteTask(task: Task | null) {
+    // event.stopPropagation();
+    // console.log('KanbanlaneComponent - onDeleteTask() task: ', task);
+    if (task != null) {
+      console.log(
+        'KanbanlaneComponent - calling EventEmitter() ',
+        this.deleteTask,
+        ' task: ',
+        task
+      );
+      this.deleteTask.emit(task);
+    }
+  }
+
   /**
    *
    * @param event
@@ -39,12 +60,14 @@ export class KanbanlaneComponent implements OnInit {
       event.dataTransfer?.setData('text', event.target.id);
     }
   }
+
   /**
    * When the draggable is moved over the drop target.
    *
    * @param event
    */
   onDragEnter(event: DragEvent) {}
+
   /**
    * Called when the draggable is dragged over any element including it's own old location!
    *
@@ -56,12 +79,14 @@ export class KanbanlaneComponent implements OnInit {
     event.preventDefault();
     // CALLED VERY OFTEN!
   }
+
   /**
    * When the draggable is moved out of the drop target.
    *
    * @param event
    */
   onDragLeave(event: DragEvent) {}
+
   /**
    * When the draggable is dropped over the drop target.
    *
@@ -88,7 +113,7 @@ export class KanbanlaneComponent implements OnInit {
           let task = taskSlice.tasks.find((task) => task.id === taskId);
 
           if (task) {
-            let tempTask = { ...task, state: this.taskState};
+            let tempTask = { ...task, state: this.taskState };
             let taskAndProject: TaskAndProject = {
               project: tempTask.project,
               task: tempTask,

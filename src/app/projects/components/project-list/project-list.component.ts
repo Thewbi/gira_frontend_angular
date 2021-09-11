@@ -5,10 +5,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 @Component({
   selector: 'app-project-list',
   templateUrl: './project-list.component.html',
-  styleUrls: ['./project-list.component.scss']
+  styleUrls: ['./project-list.component.scss'],
 })
 export class ProjectListComponent implements OnInit {
-
   @Input()
   projects!: Project[] | null;
 
@@ -16,23 +15,29 @@ export class ProjectListComponent implements OnInit {
   selectedProject!: Project | null;
 
   @Output()
-  deleteProject = new EventEmitter<Project>();
-
-  @Output()
   selectProject = new EventEmitter<Project>();
 
-  constructor() {  }
+  @Output()
+  editProject = new EventEmitter<Project>();
 
-  ngOnInit() {
+  @Output()
+  deleteProject = new EventEmitter<Project>();
+
+  constructor() {}
+
+  ngOnInit() {}
+
+  select(project: Project) {
+    this.selectProject.emit(project);
   }
 
-  onSelect(project: Project) {
-    this.selectProject.emit(project);
+  edit(event: any, project: Project) {
+    event.stopPropagation();
+    this.editProject.emit(project);
   }
 
   delete(event: any, project: Project) {
     event.stopPropagation();
     this.deleteProject.emit(project);
   }
-
 }

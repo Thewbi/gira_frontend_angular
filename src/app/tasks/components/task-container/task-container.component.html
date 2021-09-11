@@ -8,6 +8,7 @@
   <div>Selected Task is: {{ (selectedTask$ | async)?.name }}</div>
 
   <app-task-form (addTask)="addTask($event)"></app-task-form>
+
   <app-task-list
     [tasks]="tasks$ | async"
     [selectedTask]="selectedTask$ | async"

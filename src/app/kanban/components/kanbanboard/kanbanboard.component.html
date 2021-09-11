@@ -13,11 +13,23 @@
 
   <h1>List of Tasks</h1>
 
+  <!-- this is a popup dialog for creating and editing tasks -->
+  <app-task-form (addTask)="addTask($event)"></app-task-form>
+  <button id="myBtn" (click)="btnPopupClicked($event)">Open Modal</button>
+
   <div *ngIf="(tasks$ | async)?.length === 0; else elseBlock">
     No tasks are available.
   </div>
   <ng-template #elseBlock>
-    <ul>
+    <div class="kanban-grid">
+      <app-kanbanlane (deleteTask)="onDeleteTask($event)" *ngFor="let taskState of kanbanLaneStates; index as i" [taskState]="taskState"></app-kanbanlane>
+    </div>
+  </ng-template>
+</ng-template>
+
+
+
+<!-- <ul> -->
       <!-- https://ultimatecourses.com/blog/angular-ngfor-async-pipe -->
 
       <!--
@@ -26,7 +38,7 @@
           (dragend)="onDragEnd($event)"
           (drop)="onDrop($event)"
       -->
-      <li *ngFor="let task of tasks$ | async; index as i">
+      <!-- <li *ngFor="let task of tasks$ | async; index as i">
         <span
           id ="span_{{i}}"
           draggable="true"
@@ -35,8 +47,8 @@
           (dragend)="onDragEnd($event)"
           >{{ i + 1 }}. {{ task.name }} - {{ task.description }}</span
         >
-      </li>
-    </ul>
+      </li> -->
+    <!-- </ul> -->
 
     <!--
       (dragstart)="onDragStart($event)"
@@ -45,16 +57,17 @@
       (dragleave)="onDragLeave($event)"
       (dragend)="onDragEnd($event)"
     -->
-    <div
+    <!-- <div
       id="div2"
       class="drop-target"
       (dragenter)="onDragEnter($event)"
       (dragover)="onDragOver($event)"
       (drop)="onDrop($event)"
       (dragleave)="onDragLeave($event)"
-    >drop-target</div>
+    >drop-target</div> -->
 
-    <div *ngFor="let taskState of kanbanLaneStates; index as i"><app-kanbanlane [taskState]="taskState"></app-kanbanlane></div>
-
-  </ng-template>
-</ng-template>
+    <!--
+    <div *ngFor="let taskState of kanbanLaneStates; index as i">
+      <app-kanbanlane [taskState]="taskState"></app-kanbanlane>
+    </div>
+    -->

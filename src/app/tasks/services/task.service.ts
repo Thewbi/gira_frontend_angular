@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Project } from 'src/app/models/project';
 import { Task } from '../../models/task';
@@ -18,6 +18,10 @@ export class TaskService {
   }
 
   getTasksByProject(project: Project): Observable<Task[]> {
+    if (project == null) {
+      return EMPTY;
+    }
+
     return this.httpClient
       .get<Task[]>(this.url + '/all?projectId=' + project.id)
       .pipe(
@@ -46,6 +50,7 @@ export class TaskService {
   }
 
   deleteTask(task: Task): Observable<Task> {
+    console.log('Task: ', task);
     return this.httpClient.delete<Task>(this.url + '/delete/' + task.id);
   }
 }

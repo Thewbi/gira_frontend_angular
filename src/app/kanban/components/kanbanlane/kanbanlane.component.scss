@@ -1,7 +1,21 @@
-.kanbanlane {
+.kanban-lane {
   border: 1px solid black;
-  min-height: 120px;
+  // min-height: 120px;
+  // display: inline-block;
+
+  display: grid;
+  grid-auto-rows: max-content;
+  grid-gap: 10px;
+  padding: 10px;
+
+  height: 100%;
 }
+
+// .kanban-lane > ul {
+//   list-style-type: none;
+//   padding: 0px;
+
+// }
 
 .selected {
   border: 1px solid black;

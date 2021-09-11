@@ -520,6 +520,44 @@ The only way to transfer the draggable into the event that arrives in the drop e
 the string data type. That means the element or component itself cannot be transferred. At most
 the id of the component or element can be transferred.
 
+## Font Awesome Icons
+
+Font Awesome has free and paid icons!
+
+In order to use the free icons in Angular, go to https://fontawesome.com/.
+Click on the button "Start Free", you will be redirected to https://fontawesome.com/start
+Here you find a link to the npm page: https://fontawesome.com/v5.15/how-to-use/on-the-web/setup/using-package-managers
+
+You need to install the icons using the save option so that they are available in production environments:
+
+```
+npm install --save @fortawesome/fontawesome-free
+```
+
+Now, import the font awesome css into angular.json:
+
+```
+"styles": [
+  "src/styles.scss",
+  "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+  "node_modules/normalize.css/normalize.css"
+],
+```
+
+Now you can add symbols
+
+```
+<i class="fas fa-baseball-ball"></i>
+<i class="fas fa-user"></i>
+```
+
+Here is a list of all icons: https://fontawesome.com/v5.15/icons?d=gallery&p=2
+Here is how to use them: https://fontawesome.com/v5.15/how-to-use/on-the-web/referencing-icons/basic-use
+
+Alternatively:
+There is also this explanation:
+https://www.npmjs.com/package/angular-font-awesome
+
 ## Testing
 
 - when the task is deleted, which is currently selected, the store state

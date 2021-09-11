@@ -7,18 +7,21 @@ import { StoreModule } from '@ngrx/store';
 import * as fromKanban from './reducers';
 import { KanbanlaneComponent } from './components/kanbanlane/kanbanlane.component';
 import { KanbanitemComponent } from './components/kanbanitem/kanbanitem.component';
-
+import { TasksModule } from '../tasks/tasks.module';
 
 @NgModule({
   declarations: [
     KanbanboardComponent,
     KanbanlaneComponent,
-    KanbanitemComponent
+    KanbanitemComponent,
   ],
   imports: [
     CommonModule,
     KanbanRoutingModule,
-    StoreModule.forFeature(fromKanban.kanbanFeatureKey, fromKanban.reducers, { metaReducers: fromKanban.metaReducers })
-  ]
+    StoreModule.forFeature(fromKanban.kanbanFeatureKey, fromKanban.reducers, {
+      metaReducers: fromKanban.metaReducers,
+    }),
+    TasksModule,
+  ],
 })
-export class KanbanModule { }
+export class KanbanModule {}

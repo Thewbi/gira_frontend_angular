@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -31,7 +32,7 @@ export class ProjectContainerComponent implements OnInit {
 
   private selectedProject: Project | null;
 
-  constructor(private store: Store<ProjectState>) {
+  constructor(private store: Store<ProjectState>, private router: Router) {
     this.selectedProject = null;
   }
 
@@ -51,6 +52,9 @@ export class ProjectContainerComponent implements OnInit {
   }
 
   deleteProject(project: Project) {
+    if (confirm('Are you sure to delete ' + project.projectname) == false) {
+      return;
+    }
     // clear the task slice if the deleted project is currently selected
     if (this.selectedProject?.id == project.id) {
       this.store.dispatch({
@@ -76,5 +80,7 @@ export class ProjectContainerComponent implements OnInit {
       type: ProjectActionTypes.SelectProject,
       payload: project,
     });
+    // navigate to this project's kanban board
+    this.router.navigate(['/kanban']);
   }
 }

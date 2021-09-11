@@ -67,12 +67,12 @@ export class SelectTaskFinishedAction implements Action {
 
 export class DeleteTaskAction implements Action {
   readonly type = TaskActionTypes.DeleteTask;
-  constructor(public payload: Task) {}
+  constructor(public payload: TaskAndProject) {}
 }
 
 export class DeleteTaskFinishedAction implements Action {
   readonly type = TaskActionTypes.DeleteTaskFinished;
-  constructor(public payload: Task) {}
+  constructor(public payload: TaskAndProject) {}
 }
 
 export class ClearTaskStateAction implements Action {

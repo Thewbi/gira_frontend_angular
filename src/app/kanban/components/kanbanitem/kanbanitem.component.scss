@@ -1,5 +1,83 @@
-.kanban-item {
-  width: 100;
-  height: 100;
-  border: 1px solid black;
+@import "../../../../global-variables";
+
+.kanban-card {
+  width: 200px;
+  max-width: 200px;
+
+  border-left: 5px solid #80d5dc;
+  //border-radius: 4px;
+  border-radius: 0px;
+
+  background-color: #FFFFFF;
+
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+  margin-top:20px;
 }
+
+.kanban-card > .body > .body-header {
+  font-size: 60%;
+  overflow: hidden;
+  color: darkgray;
+  font-weight: 100;
+  padding: 12px 12px 0px 12px;
+}
+
+/* .kanban-card > .body > .body-text {
+  overflow: hidden;
+  color: black;
+  font-weight: 400;
+  padding: 12px;
+} */
+
+.kanban-card > .body > .body-text {
+  font-size: 100%;
+  --max-lines: 4.0;
+  // position: relative;
+  max-height: calc(var(--lh) * var(--max-lines));
+  overflow: hidden;
+  /* font-weight: 400; */
+  padding-right: 1rem;  /*space for ellipsis */
+  /* padding: 12px; */
+  margin: 12px;
+}
+// .kanban-card > .body > .body-text::before {
+//   // position: absolute;
+//   // content: "...";
+//   inset-block-end: 0; /* "bottom" */
+//   inset-inline-end: 0; /* "right" */
+// }
+// .kanban-card > .body > .body-text::after {
+//   // content: "";
+//   // position: absolute;
+//   inset-inline-end: 0; /* "right" */
+//   width: 1rem;
+//   height: 1rem;
+//   background: white;
+//   content: "...";
+// }
+
+.kanban-card > .footer {
+  overflow: hidden;
+  color:  #8B8000;
+  font-weight: 100;
+  padding-top: 12px;
+  background-color:WhiteSmoke;
+  padding: 12px;
+}
+
+// .kanban-item {
+//   width: 200px;
+//   max-width: 200px;
+//   height: 150px;
+
+//   border-left: 5px solid blue;
+//   border-radius: 4px;
+
+
+//   background-color: $HTMLWhite;
+// }
+
+// .padding {
+//   margin: 12px;
+// }

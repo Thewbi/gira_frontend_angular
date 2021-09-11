@@ -3,6 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { Project } from 'src/app/models/project';
+import { TaskAndProject } from 'src/app/models/TaskAndProject';
 import { TaskActions, TaskActionTypes } from '../actions';
 import { TaskService } from '../services/task.service';
 
@@ -74,15 +75,18 @@ export class TaskEffects {
   deleteTasks$ = createEffect(() =>
     this.actions$.pipe(
       ofType(TaskActionTypes.DeleteTask),
-      mergeMap(({ payload }) =>
-        this.taskService.deleteTask(payload).pipe(
+      mergeMap(({ payload }) => {
+        let taskAndPayload = payload as TaskAndProject;
+        console.dir(taskAndPayload);
+
+        return this.taskService.deleteTask(payload.task).pipe(
           map((task) => ({
             type: TaskActionTypes.DeleteTaskFinished,
             payload: payload,
           })),
           catchError(() => EMPTY)
-        )
-      )
+        );
+      })
     )
   );
 

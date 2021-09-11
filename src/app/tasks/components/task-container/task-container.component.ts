@@ -1,10 +1,8 @@
 import {
   Component,
-  EventEmitter,
   Input,
   OnChanges,
   OnInit,
-  Output,
   SimpleChanges,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -33,8 +31,7 @@ export class TaskContainerComponent implements OnInit, OnChanges {
 
   constructor(private store: Store<any>) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.selectedProject) {

@@ -1,3 +1,32 @@
 .selected {
-  border: 1px solid black;
+  border: 0px solid black;
+}
+
+ul, ol {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+// space-out items by adding margin to the bottom of elements
+.border-list li:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.left-border-list-item {
+  border-left: 5px solid red;
+  border-radius: 0px;
+  height: 40px;
+  line-height: 40px;
+
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background-color: #FFF;
+}
+
+.btn-icon {
+  background-color: #FFF;
+  border: 1px solid gainsboro;
+
+  width: 35px;
+  height: 35px;
 }

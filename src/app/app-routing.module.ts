@@ -12,10 +12,15 @@ const routes: Routes = [
     loadChildren: () =>
       import('./kanban/kanban.module').then((mod) => mod.KanbanModule),
   },
+  {
+    path: '**',
+    loadChildren: () =>
+      import('./projects/projects.module').then((mod) => mod.ProjectsModule),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,12 +1,17 @@
 <h1>Project List</h1>
 
+<!--
 SelectedProject is: {{ selectedProject?.projectname | json }}
+-->
 
-<ul>
-  <li *ngFor="let project of projects" (click)="onSelect(project)">
+<ul class="border-list">
+  <li *ngFor="let project of projects" (click)="select(project)" class="left-border-list-item">
     <span [ngClass]="{'selected' : project.id == selectedProject?.id}">{{ project.projectname }} - {{ project.description }}</span>
 
+    <!--
     <a routerLink="/kanban" routerLinkActive="active">Kanban</a>
-    <button (click)="delete($event, project); false">Delete</button>
+    -->
+    <button (click)="edit($event, project); false" class="btn-icon"><i class="far fa-edit"></i></button>
+    <button (click)="delete($event, project); false" class="btn-icon"><i class="far fa-trash-alt"></i></button>
   </li>
 </ul>

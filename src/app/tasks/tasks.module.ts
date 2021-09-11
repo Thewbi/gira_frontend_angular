@@ -19,6 +19,6 @@ import { ReactiveFormsModule } from '@angular/forms';
       //metaReducers: fromTasks.metaReducers,
     }),
   ],
-  exports: [TaskContainerComponent],
+  exports: [TaskContainerComponent, TaskFormComponent],
 })
 export class TasksModule {}

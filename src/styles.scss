@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+
+// @import "../node_modules/normalize.css/normalize.css";
+@import "global-variables";
+
+$background-color: $HTMLGray-34;
+
+html {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 100;
+  background-color: #E8E8E8
+}
+html {
+  --lh: 1.0rem;
+  line-height: var(--lh);
+}
+
+body {
+  background-color: $background-color;
+}
